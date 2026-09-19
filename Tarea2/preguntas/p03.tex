@@ -1,0 +1,32 @@
+\subsection*{c. }
+
+\addcontentsline{toc}{subsection}{c.}
+    
+\textbf{¿Cuál es el significado de un tipo de relación recursiva? Proporciona un par de ejemplos de este tipo de relación.}
+
+Una relación recursiva es un tipo de asociación de una entidad consigo misma, es decir, es un tipo de relación con grado 1 (unaria).  A continuación algunos ejemplos.
+\begin{enumerate}
+\item Supongamos que tenemos una situación deportiva en la que se trata de modelar:
+  \begin{itemize}
+  \item En cada entrenamiento, cada jugador es acompañado por otro jugador y cada jugador solo puede tener un compañero.
+  \end{itemize}
+  En este caso tenemos la relación acompañar, que está situada sobre una única entidad, la entidad jugador. De este modo, es posible plantear la relación como una relación unaria, en la que un jugador esté relacionado con otro jugador bajo la relación acompañar (con cardinalidad 1:1).
+  
+\item Supongamos que tenemos una situación en la que queremos almacenar información sobre los lenguajes de programación y queremos modelar:
+  \begin{itemize}
+  \item Cada lenguaje de programación es construido a su vez por otro lenguaje de programación.
+  \end{itemize}
+  En esta situación, es posible plantear un modelo usando la entidad Lenguaje que está asociada consigo misma bajo la relación construir (con cardinalidad 1:1).
+  
+\item Supongamos que tenemos una situación en la que queremos almacenar datos sobre el plan de estudios de una carrera y queremos modelar:
+  \begin{itemize}        
+  \item En un curso, hay materias que preceden a otras.                
+  \end{itemize}
+  Para este caso, se puede plantear un modelo usando la entidad Materia que está asociada consigo misma bajo la relación preceder (con cardinalidad N:M).
+  
+\item Supongamos que tenemos una situación en la que queremos almacenar datos sobre personas en un grupo.
+  \begin{itemize}
+  \item En un grupo, hay personas que conocen a otras personas.            
+  \end{itemize}
+  Para este caso, se puede plantear un modelo usando la entidad Persona que está asociada consigo misma bajo la relación conocer (con cardinalidad N:M).
+  \end{enumerate}
