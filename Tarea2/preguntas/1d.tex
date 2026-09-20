@@ -1,0 +1,38 @@
+\subsection*{d. }
+
+\addcontentsline{toc}{subsection}{d.}
+    
+\textbf{Responde a las siguientes cuestiones, deberás indicar si son posibles o no, justificando tu respuesta.}
+
+\textbf{¿Un atributo compuesto puede ser llave?}
+
+\textbf{R.} Sí puede ser, y su unicidad es distinguible por los `sub-atributos' que lo integran.
+
+\textbf{¿Un atributo multivaluado puede ser llave?}
+
+\textbf{R.} En teoría sí, pero esto no solo restringe la cantidad de datos almacenable en dicho atributo (para mantener la inmutabilidad de la llave), sino que también rompe con las reglas más fundamentales de normalización de bases de datos, ya que la Primera Forma Normal indica registrar valores atómicos por cada columna.
+
+En caso de que existan valores que dependan exclusivamente de una agrupación de datos en particular, es mejor describir por aparte una relación entre éstos y el único valor dependiente.
+\begin{itemize}
+    \item Un ejemplo se da si se quiere almacenar una entidad \textit{Promoción} de la que sus características dependen de los productos almacenados, es mejor que éstas se relacionen de forma 1:$N$ con la entidad \textit{Producto} en lugar de poner la lista como llave.
+\end{itemize}
+
+
+\textbf{¿Un atributo derivado puede ser llave?}
+
+\textbf{R.} En teoría sí pero bajo restricciones de unicidad de los atributos base, no obstante, esto no supone una implementación viable puesto que, por naturaleza, los atributos derivados no siempre son persistentes, además de que genera una dependencia de la llave $-$y por consecuencia, de la entidad$-$ en un atributo no llave.
+
+\textbf{¿Un atributo multivaluado puede ser compuesto?}
+
+\textbf{R.} Sí, puede ser; por ejemplo, si se guarda el historial de un trabajador, se pueden llegar a almacenar varias agrupaciones de datos como el grado y la institución, pues un trabajador pudo haber tenido varios empleos.
+
+\textbf{¿Un atributo multivaluado puede ser derivado?}
+
+\textbf{R.} Sí, se puede dar, por ejemplo, a partir de operar sobre otro atributo multivaluado, como en una filtración de datos.
+\begin{itemize}
+    \item Un caso puede darse si, al guardar información de proyectos de un departamento, se calculan y almacenan aquellos que están vigentes.
+\end{itemize}
+
+\textbf{¿Qué implicaría la existencia de una entidad cuyos atributos sean todos derivados?}
+
+\textbf{R.} Esto implica que todos sus datos son calculados a partir de otras fuentes en el sistema, por lo que o es una implementación redundante o se trata de información derivada de una consulta. Además, por la volatilidad comentada en previamente, esta entidad no puede tener una llave con la que dar paso a una integridad referencial fiable.
