@@ -35,4 +35,4 @@ En caso de que existan valores que dependan exclusivamente de una agrupación de
 
 \textbf{¿Qué implicaría la existencia de una entidad cuyos atributos sean todos derivados?}
 
-\textbf{R.} Esto implica que todos sus datos son calculados a partir de otras fuentes en el sistema, por lo que o es una implementación redundante o se trata de información derivada de una consulta. Además, por la volatilidad comentada en previamente, esta entidad no puede tener una llave con la que dar paso a una integridad referencial fiable.
+\textbf{R.} Esto no supone una posible implementación, puesto que, como implicaría que todos sus datos son calculados a partir de otras fuentes en el sistema, entonces la entidad no poseería un atributo propio del que puedan derivar, además de que se corre el riesgo de que las filas, al ser calculadas por valores de terceros, no sean distinguibles entre sí. Una posible solución es la de implementar una llave primaria de la que derive el resto de valores.
