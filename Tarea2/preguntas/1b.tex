@@ -1,0 +1,6 @@
+\subsection*{b. }
+
+\addcontentsline{toc}{subsection}{b.}
+\textbf{¿Bajo qué condiciones se puede migrar un atributo de algún tipo de entidad que participa en un tipo de relación binaria y convertirse en un atributo del tipo de relación? ¿Cuál sería en el efecto?}\\ \\
+Podemos migrar un atributo a una relación cuando su valor depende de la combinación de instancias las entidades, es decir, que el atributo no describe una propiedad intrínseca de una de las entidades, sino una característica de esa asociación en particular.\\ \\
+Hacer esto puede generar la pérdida del acceso directo al atributo. Después de migrar el atributo, este pertenece a la relación entre las dos entidades, por lo que para consultarlo es necesario identificar ambas partes de la relación. Mientras que antes de migrar el atributo solo consultaríamos directamente su entidad.
