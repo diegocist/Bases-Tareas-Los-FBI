@@ -1,0 +1,17 @@
+\subsection*{e. }
+
+\addcontentsline{toc}{subsection}{e.}
+    
+\textbf{Explica el concepto de categorías (herencia múltiple) en el modelo E-R y proporciona dos ejemplos de la vida real en donde se aplique este concepto.}
+
+Una \textbf{categoría} se utiliza en el modelo E-R extendido para representar la unión de dos o más superclases que pertenecen a distintos tipos de entidades. Las superclases de una categoría suelen tener atributos y llaves primarias completamente diferentes entre sí. Por lo que, cuando las llaves son distintas, recurrimos a una llave sustituta para identificar de manera única a los elementos de la categoría. En este modelo, una entidad de la categoría pertenece a una sola de las superclases a la vez, por lo que la herencia de atributos es selectiva.
+
+Una categoría es diferente de la \textbf{herencia múltiple}. En la herencia múltiple, la subclase hereda simultáneamente de varias superclases que comparten el mismo atributo llave; mientras que en una categoría, la subclase representa la unión de clases de distintos tipos con llaves diferentes.
+
+\textbf{Ejemplos de la vida real:}
+
+\begin{enumerate}
+    \item \textbf{Emisión de factura :} Para emitir un comprobante fiscal podemos tener distintos tipos de personas, puede ser una \texttt{PersonaFísica} (identificada por CURP), una \texttt{Persona moral} (identificada por RFC) o un \texttt{Extranjero} (identificado por su RFC genérico extranjero). Como las tres superclases tienen llaves distintas, \texttt{Cliente} se modela como una categoría con un \texttt{IdCliente} como llave sustituta.
+    
+    \item \textbf{Registro de Pago Electrónico:} En una tienda en línea podemos realizar el pago de un producto de distintas maneras; ya sea mediante \texttt{TarjetaDeCrédito} (identificada por el número de tarjeta), una \texttt{CuentaBancaria} (identificada por la CLABE) o un \texttt{Deposito} (identificado por el número de transacción). La categoría \texttt{MétodoDePago} unifica estas distintas entidades para asociarlas a una orden de compra mediante un \texttt{IdMetodoPago} como llave sustituta.
+\end{enumerate}
