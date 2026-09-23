@@ -8,3 +8,78 @@
     \includegraphics[width=1\linewidth]{imagenes/diagramasER.png}
     \caption{Diagrama Entidad/Relación que representa los conceptos del modelo Entidad/Relación}
 \end{figure}
+
+\begin{itemize}
+    \item \textbf{Entidades regulares (fuertes)}
+    \begin{itemize}
+        \item \textbf{Relación}
+        \begin{itemize}
+            \item \underline{Nombre}
+            \item Grado (atributo derivado)
+            \item ¿Es débil o fuerte? (atributo derivado)
+        \end{itemize}
+        \item \textbf{Tipo de entidad} (superentidad, con especializaciones \textit{Fuerte} y \textit{Débil})
+        \begin{itemize}
+            \item \underline{Nombre}
+            \item Instancias de edad (atributo multivaluado)
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Entidades débiles}
+    \begin{itemize}
+        \item Atributo (superentidad, con especializaciones \textit{Compuesto} y \textit{Simple}) $-$asociado tanto a las entidades de Relación como a las de Tipo de Entidad.
+        \begin{itemize}
+            \item \underline{Nombre}
+            \item Requerido u opcional
+            \item Dominio (compuesto)
+            \begin{itemize}
+                \item Lógico
+                \item Técnico
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+        \item \textbf{Consideraciones}
+        \begin{enumerate}
+            \item Las relaciones y tipos de entidad deben tener nombres únicos, mas para los atributos es opcional.
+            \item Los tipos de entidad tienen siempre un atributo llave, mas las relaciones no, y pueden no tener atributos.
+            \item El tipo de relación (débil o fuerte) se deduce de las entidades relacionadas.
+            \item Un atributo compuesto puede conformarse de atributos tanto simples como compuestos.
+            \item Un tipo de entidad es fuerte por default pero, si es definida como débil, debe asociarse siempre, a al menos una entidad, siendo ésta a su vez débil o fuerte.
+            \item Una relación siempre une a, al menos, un tipo de entidad.
+        \end{enumerate}
+    \end{itemize}
+    \item \textbf{Relaciones, Cardinalidad y Participación}
+    \begin{itemize}
+        \item \textbf{SE COMPONE DE} Atributo compuesto - Atributo $- 1:N$
+        \begin{itemize}
+            \item \textbf{Atributo compuesto:} Total $(1:N)$
+            \item \textbf{Atributo:} Parcial $(0,1)$
+        \end{itemize}
+        \item \textbf{DEPENDE DE} Tipo de entidad débil - Tipo de entidad $- N:M$
+        \begin{itemize}
+            \item \textbf{Tipo de entidad débil:} Total $(1,N)$
+            \item \textbf{Entidad:} Parcial $(0,N)$
+        \end{itemize}
+        \item \textbf{COMPONE A} Atributo - Tipo de entidad $- 1:N$ (relación débil)
+        \begin{itemize}
+            \item \textbf{Atributo:} Total $(1,1)$
+            \item \textbf{Tipo de entidad:} Total $(1,N)$
+        \end{itemize}
+        \item \textbf{ES LLAVE DE} Atributo - Tipo de entidad $- 1:1$ (relación débil)
+        \begin{itemize}
+            \item \textbf{Atributo:} Parcial $(0,1)$
+            \item \textbf{Tipo de entidad:} Total $(1,1)$
+        \end{itemize}
+        \item \textbf{COMPONE A} Atributo - Relación $- 1:N$ (relación débil)
+        \begin{itemize}
+            \item \textbf{Atributo:} Total $(1,1)$
+            \item \textbf{Tipo de entidad:} Parcial $(0,N)$
+        \end{itemize}
+                \item \textbf{RELACIONA A} Relación - Tipo de entidad $- N:M$
+        \begin{itemize}
+            \item \textbf{Relación:} Total $(1:N)$
+            \item \textbf{Tipo de entidad:} Parcial $(0,N)$
+        \end{itemize}
+
+    \end{itemize}
+\end{itemize}
