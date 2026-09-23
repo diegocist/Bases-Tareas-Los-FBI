@@ -1,0 +1,164 @@
+\subsection*{d. Sistema de Información Geográfica}
+
+\addcontentsline{toc}{subsection}{d. Sistema de Información Geográfica}
+
+\noindent La Secretaría del Medio Ambiente y Recursos Naturales (SEMARNAT) desea crear un SIG (Sistema de Información Geográfica) para acceso público a través de Internet. Se desea crear un modelo E/R atendiendo las siguientes reglas de negocio:
+
+\begin{itemize}
+    \item Datos referentes a ríos, afluentes, sistemas montañosos, montañas y municipios donde se localizan.
+    
+    \item De los ríos se almacenará un identificador del río, nombre, descripción y longitud total. Para cada río, además, se almacenarán los municipios que atraviesa y la longitud del tramo del río para cada municipio bañado.
+    
+    \item De los municipios se almacenará un identificador para el municipio, nombre y número de habitantes.
+    
+    \item Los ríos pueden ser afluentes de otros ríos; si es el caso, se desea conocer a cuál río alimentan y el municipio en el que se unen al río del que son afluentes.
+    
+    \item En cuanto a los sistemas montañosos, se almacenará un código, el nombre, la orientación (norte, sur, este, oeste), la longitud, la altura máxima y los municipios que ocupa. Los sistemas están formados por montañas de las que se almacena un código, un nombre, descripción y altura. Se debe considerar que una montaña sólo pertenecerá a un sistema montañoso. Se requiere almacenar también el municipio o municipios en los que se encuentra, ya que hay casos en los que una montaña es compartida por varios municipios.
+    
+    \item Las montañas además pueden tener un origen volcánico o de plegamiento. En el caso de que su origen sea volcánico, se desea almacenar el tipo de volcán y si es de plegamiento, se almacenará el periodo geológico de dicho plegamiento.
+    
+    \item Algunos ríos y montañas son elementos geológicos monitoreados por satélite. De dichos elementos se desea almacenar la fecha en la que se comienzan a monitorear y el satélite que realiza el seguimiento. Un satélite puede monitorear varios elementos. De los satélites se desea almacenar su identificador.
+\end{itemize}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{imagenes/Sistema Geográfico.drawio.png}
+    \caption{Diagrama Entidad/Relación que representa un Sistema de Información Geográfica}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Entidades regulares (fuertes)}
+    \begin{itemize}
+        \item \textbf{Río}
+        \begin{itemize}
+            \item \underline{\texttt{IdRio}} 
+            \item Nombre
+            \item Descripcion
+            \item LongitudTotal
+        \end{itemize}
+
+        \item \textbf{Municipio}
+        \begin{itemize}
+            \item \underline{{IdMunicipio}} 
+            \item Nombre
+            \item NumHabitantes
+        \end{itemize}
+
+        \item \textbf{Sistema montañoso}
+        \begin{itemize}
+            \item \underline{{Código}} 
+            \item Nombre
+            \item Longitud
+            \item Orientacion (Atributo multivaluado)
+            \item AlturaMaxima (Atributo derivado)
+        \end{itemize}
+
+        \item \textbf{Montaña} (Superentidad de la especialización)
+        \begin{itemize}
+            \item \underline{{Código}} 
+            \item Nombre
+            \item Descripcion
+            \item Altura
+        \end{itemize}
+
+        \item \textbf{Satélite}
+        \begin{itemize}
+            \item \underline{{IdSatelite}} 
+            \item Nombre
+            \item Descripcion
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Entidades débiles}
+    \begin{itemize}
+        \item \textbf{Afluencia}
+        \begin{itemize}
+            \item Asociada de forma total a las relaciones \texttt{Desembocar}, \texttt{Alimentar} y \texttt{Ocurrir}.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Atributos descriptivos de la relación}
+    \begin{itemize}
+        \item \textbf{Atravesar:} \texttt{LongitudTramo}
+        \item \textbf{Monitorear:} \texttt{FechaInicio}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Consideraciones}
+\begin{enumerate}
+    \item Dado que solamete algunos ríos y montañas son monitoreados por satélite, y al tratarse de dos tipos de entidades con atributos y llaves distintas, se definió una categoría \texttt{ElemMonitoreado}. Lo cual garantiza que la herencia de atributos sea selectiva y que la relación \texttt{Monitorear} se asocie únicamente a los elementos geológicos registrados.
+    
+    \item Se definió una especialización por disyunción parcial para la entidad \texttt{Montaña}, dividida en \texttt{Volcánica} y \texttt{Plegamiento}. Esto debido a que una montaña puede ser de origen volcánico o de plegamiento, perteneciendo a una sola de estas subclases si es su causa de origen.
+
+    \item \texttt{LongitudTramo} se colocó como un atributo descriptivo de la relación \texttt{atravesar}, ya que la longitud de un río dentro de un municipio depende de las dos entidades.
+    
+    \item \texttt{FechaInicio} se asignó como atributo descriptivo de la relación \texttt{Monitorear}, representando el momento exacto en que un satélite específico comienza el seguimiento de un elemento geológico específico.
+\end{enumerate}
+
+\textbf{Relaciones, Cardinalidad y Participación}
+
+\begin{itemize}
+    \item \textbf{ATRAVESAR} Río - Municipio -- $N:M$
+    \begin{itemize}
+
+        \item \textbf{Río:} Parcial $(0,N)$
+        \item \textbf{Municipio:} Parcial $(0,N)$
+        \item Un río puede atravesar varios municipios, mientras que un municipio puede ser atravesado por varios ríos. No todo río atraviesa uno o varios municipios, ni todo municipio es atravesado por un río. 
+    \end{itemize}
+
+    \item \textbf{DESEMBOCAR} Río - Afluencia - $1:1$
+    \begin{itemize}
+        \item \textbf{Río:} Parcial $(0,1)$
+        \item \textbf{Afluencia:} Total $(1,1)$
+        \item Un río si es afluente esemboca en un único punto registrado de afluencia, pero no todos los ríos son afluentes. 
+    \end{itemize}
+
+    \item \textbf{ALIMENTAR} Afluencia - Río - $N:1$
+    \begin{itemize}
+        \item \textbf{Afluencia:} Total $(1,1)$
+        \item \textbf{Río:} Parcial $(0,N)$
+        \item Una afluencia alimenta a un único río receptor. En cambio, un río puede recibir agua de múltiples ríos afluentes o no recibir de ninguno.
+    \end{itemize}
+
+    \item \textbf{OCURRIR} Afluencia - Municipio - $N:1$
+    \begin{itemize}
+  
+        \item \textbf{Afluencia:} Total $(1,1)$
+        \item \textbf{Municipio:} Parcial $(0,N)$
+        \item Cada punto de afluencia ocurre dentro de un único municipio. Un municipio puede recibir varias afluencias o no recibir ninguna.
+    \end{itemize}
+
+    \item \textbf{OCUPAR} Sistema montañoso - Municipio - $N:M$
+    \begin{itemize}
+        
+        \item \textbf{Sistema montañoso:} Parcial $(0,N)$
+        \item \textbf{Municipio:} Parcial $(0,N)$
+        \item Un sistema montañoso puede ocupar varios municipios, y un municipio puede ser ocupado por más de un sistema montañoso.
+    \end{itemize}
+
+    \item \textbf{FORMAR} Sistema montañoso - Montaña - $1:N$
+    \begin{itemize}
+        
+        \item \textbf{Sistema montañoso:} Parcial $(0,N)$
+        \item \textbf{Montaña:} Total $(1,1)$
+        \item Un sistema montañoso está integrado por varias montañas  y cada montaña pertenece obligatoriamente a un único sistema montañoso.
+    \end{itemize}
+
+    \item \textbf{UBICAR} Municipio - Montaña - $N:M$
+    \begin{itemize}
+        
+        \item \textbf{Municipio:} Parcial $(0,N)$
+        \item \textbf{Montaña:} Parcial $(0,N)$
+        \item Una montaña puede ubicarse entre uno o varios municipios, y un municipio puede albergar a múltiples montañas.
+    \end{itemize}
+
+    \item \textbf{MONITOREAR} Satélite - ElemMonitoreado - $1:N$
+    \begin{itemize}
+        
+        \item \textbf{Satélite:} Parcial $(0,N)$
+        \item \textbf{ElemMonitoreado:} Total $(1,1)$
+        \item Un satélite puede monitorear varios elementos geológicos. Cada elemento monitoreado es seguido por un solo satélite. 
+    \end{itemize}
+\end{itemize}
