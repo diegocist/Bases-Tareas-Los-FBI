@@ -1,6 +1,5 @@
-
-
 \section*{3. Mini - mundo, planteamiento a partir del modelo Entidad - Relación}
+\addcontentsline{toc}{section}{3. Mini - mundo, planteamiento a partir del modelo Entidad - Relación}
 
 \subsection*{a. Números racionales}
 
@@ -14,19 +13,18 @@
 \item Además de conocer el racional reducido asociado a cada fracción, se desea saber el factor de reducción asociado (en el caso anterior el factor de reducción sería 6).
 \item Dos racionales se consideran diferentes si tienen el numerador o denominador distintos, aunque correspondan a la misma fracción reducida.
 \end{itemize}
-\subsubsection*{Análisis de requerimientos:}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{imagenes/Racional.drawio.png}
+  \caption{Diagrama E/R que representa los números racionales.}
+\end{figure}
 
-Enumerar requerimientos candidatos (Entidades):
+\textbf{Entidades:}
 \begin{itemize}
 \item Números Racionales
 \end{itemize}
 
-Comprensión del contexto del sistema (Relaciones):
-\begin{itemize}
-\item Todo número racional tiene un racional reducido (Cardinalidad 1:N).
-\end{itemize}
-
-Captura de requerimientos funcionales:
+\textbf{Atributos:}
 \begin{itemize}
 \item Números Racionales
   \begin{itemize}
@@ -36,9 +34,16 @@ Captura de requerimientos funcionales:
   \end{itemize}
 \end{itemize}
 
-Para la relación entre números racionales que asocia un racional con su número reducido, se consideró una relación parcial por parte de los números racionales reducidos, pues se menciona que no todos los números racionales son reducidos y una participación total por parte de los números racionales reducibles, pues se menciona que todos los números racionales tienen un racional reducido. A continuación se muestra el diagrama propuesto para esta situación.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{imagenes/Racional.drawio.png}
-  \caption{Diagrama Entidad/Relación que representa los números racionales.}
-\end{figure}
+\textbf{Relaciones:}
+\begin{itemize}
+  \item \textbf{Racional - Racional - 1:N}
+  \begin{itemize}
+    \item \textbf{Racional (Reducido): parcial (0, N)}
+    \item \textbf{Racional (Simplificable): total (1, 1)}
+    Un racional (reducido) puede tener múltiples racionales (simplificables), pero un racional (simplificable) puede tener un único racional reducido.
+  \end{itemize}
+\end{itemize}
+
+Para la relación entre números racionales que asocia un racional con su número reducido, se consideró una participación parcial por parte de los números racionales reducidos, pues se menciona que no todos los números racionales son reducidos, y una participación total por parte de los números racionales reducibles, pues se menciona que todos los números racionales tienen un racional reducido.
+
+
