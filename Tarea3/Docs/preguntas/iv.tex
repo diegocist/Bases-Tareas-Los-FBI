@@ -1,0 +1,24 @@
+\subsection*{iv. }
+
+\addcontentsline{toc}{subsection}{iv.}
+    
+\textbf{¿Qué restricciones impone una llave primaria y una llave foránea al modelo de datos relacional?}
+\subsection*{Restricciones de la Llave Primaria (PK)}
+\begin{itemize}
+    \item \textbf{Integridad de Entidad (NOT NULL):} Ninguna columna de la PK puede contener valores nulos, sino que debe contar obligatoriamente con una identificación válida.
+
+    \item \textbf{Unicidad (UNIQUE):} La tupla que constituye la PK debe ser distinta de las demás dentro de la relación, evitando la duplicidad de entidades y permitiendo identificar a cada entidad como única.
+\end{itemize}
+
+\subsection*{Restricciones de la Llave Foránea (Foreign Key)}
+
+\begin{itemize}
+    \item \textbf{Integridad Referencial:} Todo valor almacenado en la columna de la llave foránea debe existir previamente como PK de la tabla a la que se hace referencia, lo que restringe las inserciones o actualizaciones de un registro a la existencia de dicho valor (\textbf{Restricción de Inserción o Modificación en la Tabla Hija}) a menos que el campo permita explícitamente valores nulos.
+    \item \textbf{Restricción de Modificación o Eliminación en la Tabla Padre:} Impide escenarios de "registros huérfanos" mediante la aplicación de normas sobre la tabla referenciada:
+    \begin{itemize}
+        \item \textbf{RESTRICT / NO ACTION:} Un registro en la tabla padre no puede ser modificado o eliminado si existen registros en la tabla hija que dependen de este.
+        \item \textbf{CASCADE:} Elimina o actualiza automáticamente los registros correspondientes en la tabla hija si el registro padre es modificado o eliminado.
+        \item \textbf{SET NULL:} Asigna el valor NULL a la llave foránea en la tabla hija si el registro padre es eliminado o modificado (si es que la columna permite nulos).
+        \item \textbf{SET DEFAULT:} Asigna un valor por defecto en la tabla hija cuando el registro padre se elimina o modifica.
+    \end{itemize}
+\end{itemize}

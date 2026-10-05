@@ -1,0 +1,43 @@
+\section*{4.}
+
+\addcontentsline{toc}{section}{4.}
+\textbf{Indica si las siguientes afirmaciones se cumplen o no.}
+
+\subsubsection*{a.}
+Es posible que dos departamentos tengan el nombre \textit{`Sistemas'} pues, como el atributo \texttt{Nombre} no es parte de la llave primaria (PK) del tipo de entidad, entonces no tienen restricciones de unicidad explícitas, por lo que la afirmación es verdadera.
+
+\subsubsection*{b.}
+Dada la estructura de la tabla de relación de \texttt{Trabajar}, cuya PK se compone de exactamente una entidad de \texttt{Empleado} y una de \texttt{Departamento}, entonces la restricción solamente indica que no se puede repetir una relación de trabajo entre los mismos valores de identificador de \texttt{Empleado}, de identificador de \texttt{Departamento} y del atributo \texttt{desde}, por lo que, si dos entidades de tipo \texttt{Empleado} son distintas, entonces sí se pueden relacionar con la misma entidad \texttt{Departamento}, por lo que la afirmación es verdadera.
+
+\subsubsection*{c.}
+Para las tablas de relación de \texttt{Trabajar} o de \texttt{Administrar}, el que haya identificadores de \texttt{Empleado} o de \texttt{Departamento} registrados en una fila de una de las tablas no genera restricciones en la otra a nivel lógico, ya que estas no tienen relación entre sí, por lo que, como ambas tablas \texttt{Trabajar} y \texttt{Administrar} pueden tener filas con los mismos identificadores, entonces un empleado puede trabajar en un departamento y administrar otro a la vez, por lo que la afirmación es verdadera.
+
+\subsubsection*{d.}
+Como se explicó en el inciso anterior, \texttt{Trabajar} y \texttt{Administrar} no tienen restricciones entre sí en cuanto a los valores que se pueden o deben almacenar por lo que, como un \texttt{Empleado} puede trabajar en un \texttt{Departamento} y administrar otro a la vez, entonces no requiere trabajar en el \texttt{Departamento} que administra para cumplir con las restricciones, por lo que la afirmación es falsa.
+
+\subsubsection*{e.}
+Ya que la PK de \texttt{Trabajar} determina que la tupla que la compone debe ser única, entonces en esta relación no se pueden repetir a la vez los tres valores \texttt{NúmEmpleado}, \texttt{NúmDepto} y \texttt{Desde}. No obstante, esto no se restringe a la repetición de hasta dos valores (pues la PK sigue siendo identificable a partir de los diferentes valores del registro de que no se repite), entonces se pueden repetir los valores de \texttt{NúmEmpleado} y \texttt{Desde} en una fila si se cambian los valores de \texttt{NúmDepto} i. e., un empleado puede trabajar en dos departamentos diferentes a partir de la misma fecha, por lo que la afirmación es verdadera.
+
+\subsubsection*{f.}
+Ya un modelo relacional por sí mismo no puede aplicar restricciones entre los atributos de una misma entidad, y que el diagrama no presenta especificaciones adjuntas, entonces no se tiene una restricción entre \texttt{hasta} y \texttt{desde} que determine que uno debe ser anterior al otro, por lo que la afirmación es falsa.
+
+\subsubsection*{g.}
+Como se mencionó en el inciso $e.$, la relación \texttt{Trabajar} permite repetir valores de la PK siempre y cuando no sean todos. Es por esto que la tabla \texttt{Trabajar} refleja que la relación entre \texttt{NúmEmpleado} y \texttt{NúmDepto} es de cardinalidad $N:M$. Por esto, dado un identificador de empleado $x$, si bien es posible conocer los departamentos en los que trabaja el respectivo empleado mediante la línea de comandos
+\begin{center}
+    \texttt{SELECT NúmDepartamento FROM Trabajar WHERE NúmEmpleado = x;}
+\end{center}
+querer conocer exactamente el \textbf{único} \texttt{Departamento} donde este trabaja no tiene sentido, por lo que la afirmación es falsa.
+
+\subsubsection*{h.}
+Si bien se pueden gestionar correctamente las restricciones entre valores en la implementación del diagrama, como se comentó en el inciso $f.$, el diagrama por sí mismo carece de dichas restricciones, por lo que, ya que la PK de la tabla de \texttt{Salario} se conforma por la dupla de \texttt{NúmEmpleado} y \texttt{Desde}, basta con que el segundo atributo sea distinto entre dos filas para que el empleado se pueda repetir por lo que, si se dan las siguientes condiciones en $Salario$, entonces un mismo empleado sí puede tener asignado más de un salario, por lo que la afirmación del inciso es falsa:
+\begin{enumerate}
+    \item La fecha de inicio no se repite pero el identificador de empleado sí en dos filas (asignación de salario al mismo empleado).
+    \item El salario es distinto entre ambas filas (asignación de salarios distintos al empleado).
+    \item Las fechas de \texttt{hasta} son posteriores a sus respectivas fechas de \texttt{desde} (se da intervalo real), y al menos un día se encuentra en ambos intervalos a la vez (los dos periodos de salario se dan a la vez).
+\end{enumerate}
+
+\subsubsection*{i.}
+Ya que, por definición, todas las columnas que forman parte de la PK son estrictamente no nulas entonces, por cada registro de \texttt{Salario}, debe haber un identificador de empleado y una fecha de inicio asociados i. e., obligatoriamente debe haber valores para \texttt{NúmEmpleado} y \texttt{Desde} asociados, por lo que la proposición del inciso es falsa.
+
+\subsubsection*{j.}
+Dada la cardinalidad expresada entre \texttt{Administrar} y \texttt{Departamento}, que indica una relación parcial para este último, queda explícito que un \texttt{Departamento} puede ser registrado en la base de datos sin necesidad de tener a alguien encargado de su administración, por lo que la afirmación es falsa.
