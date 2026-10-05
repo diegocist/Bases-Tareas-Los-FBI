@@ -7,57 +7,57 @@
 Las reglas de Codd son un conjunto de requerimientos necesarios para construir un SMBD apto para implementar el modelo relacional. Son un conjunto de 13 reglas (0-12), a continuación se explicará el contenido de cada regla:
 \begin{enumerate}[start=0]
     \item \textit{Cualquier sistema que se anuncie o se afirme que es un sistema de gestión de bases de datos relacionales debe ser capaz de gestionar bases de datos íntegramente a través de sus capacidades
-    relacionales} [1]
+    relacionales} \cite{Codd1985}
 
     Esta regla indica que un SMBD relacional debe ejecutar cualquier acción dentro del sistema mediante operaciones con tablas, administrándose a sí mismo mediante dichas operaciones.    
         
-    \item \textit{Toda la información de una base de datos relacional se representa de forma explícita en el nivel lógico y de una única manera: mediante valores en tablas.}[1]
+    \item \textit{Toda la información de una base de datos relacional se representa de forma explícita en el nivel lógico y de una única manera: mediante valores en tablas.}\cite{Codd1985}
 
     Indica que cualquier dato que el sistema almacene, incluyendo al catálogo de datos, debe hacerlo únicamente mediante el uso de tablas.
     
-    \item \textit{Se garantiza que se puede acceder lógicamente a todos y cada uno de los datos (valores atómicos) de una base de datos relacional mediante una combinación del nombre de la tabla, el valor de la clave primaria y el nombre de la columna}[1]
+    \item \textit{Se garantiza que se puede acceder lógicamente a todos y cada uno de los datos (valores atómicos) de una base de datos relacional mediante una combinación del nombre de la tabla, el valor de la clave primaria y el nombre de la columna}\cite{Codd1985}
     
     Significa que por cada dato almacenado en el sistema, debe existir al menos una forma de acceder a él, mediante información sobre su ubicación, como el nombre de la tabla a la que pertenece, la fila (identificada por la llave primaria) y la columna en que se ubica.
     
-    \item \textit{Los valores nulos (distintos de la cadena de caracteres vacía o de una cadena de caracteres en blanco, y distintos del cero o de cualquier otro número) son admitidos en los SGBD plenamente relacionales para representar, de forma sistemática e independiente del tipo de datos, la información que falta y la información no aplicable.}[1]
+    \item \textit{Los valores nulos (distintos de la cadena de caracteres vacía o de una cadena de caracteres en blanco, y distintos del cero o de cualquier otro número) son admitidos en los SGBD plenamente relacionales para representar, de forma sistemática e independiente del tipo de datos, la información que falta y la información no aplicable.}\cite{Codd1985}
 
     Esta regla indica que el sistema debe ser capaz de representar a los valores nulos de forma universal, independientemente de la tabla en la que falta la información. Esta regla resulta útil al momento de implementar restricciones en las que algunos datos no pueden ser nulos (Como las llaves), garantizando la integridad de los datos.
     
-    \item \textit{La descripción de la base de datos se representa a nivel lógico de la misma manera que los datos ordinarios, de modo que los usuarios autorizados puedan aplicar el mismo lenguaje relacional a su consulta que el que aplican a los datos normales.}[1]
+    \item \textit{La descripción de la base de datos se representa a nivel lógico de la misma manera que los datos ordinarios, de modo que los usuarios autorizados puedan aplicar el mismo lenguaje relacional a su consulta que el que aplican a los datos normales.}\cite{Codd1985}
     
     Significa que la descripción sobre el propio sistema, el catálogo de datos (tablas y columnas), debe representarse dentro del sistema mediante tablas, como si fuera otro dato más con el que se puede interactuar.
     
     \item \textit{Un sistema relacional puede admitir varios lenguajes y diversos modos de uso de terminales (por ejemplo, el modelo de «rellenar los espacios en blanco»). Sin embargo, debe existir al menos un lenguaje cuyas sentencias puedan expresarse, según una sintaxis bien definida, como cadenas de caracteres y que sea exhaustivo a la hora de admitir todos los elementos siguientes:
-    Definición de datos, definición de vistas, manipulación de datos (interactiva y mediante programa), restricciones de integridad,  autorización, límites de las transacciones (inicio, confirmación y reversión).}[1]
+    Definición de datos, definición de vistas, manipulación de datos (interactiva y mediante programa), restricciones de integridad,  autorización, límites de las transacciones (inicio, confirmación y reversión).} \cite{Codd1985}
     
     Esta regla implica que, aunque el sistema pueda ofrecer múltiples interfaces o lenguajes de apoyo para los usuarios, debe existir al menos un lenguaje principal y bien definido, capaz de gestionar todos los aspectos de la base de datos.
     
-    \item \textit{Todas las vistas que son teóricamente actualizables también lo son por el sistema.}[1]
+    \item \textit{Todas las vistas que son teóricamente actualizables también lo son por el sistema.}\cite{Codd1985}
 
     Significa que, si es posible modificar un dato desde una de las vistas sin ambigüedades, entonces el sistema debe permitir realizar dicha operación y reflejar el cambio automáticamente en las tablas correspondientes.
 
-    \item \textit{La capacidad de tratar una relación base o una relación derivada como un único operando se aplica no solo a la recuperación de datos, sino también a la inserción, actualización y eliminación de datos}[1]
+    \item \textit{La capacidad de tratar una relación base o una relación derivada como un único operando se aplica no solo a la recuperación de datos, sino también a la inserción, actualización y eliminación de datos}\cite{Codd1985}
     
     Indica que el sistema debe ser capaz de operar con conjuntos de datos para consultar, insertar, modificar y eliminar datos. Esta propiedad permite que los SMBD sean capaces de manipular grandes cantidades de datos de forma eficiente.
     
-    \item \textit{Los programas de aplicación y las actividades de los terminales no se ven afectados lógicamente cuando se producen cambios, ya sea en las representaciones de almacenamiento o en los métodos de acceso.} [1]
+    \item \textit{Los programas de aplicación y las actividades de los terminales no se ven afectados lógicamente cuando se producen cambios, ya sea en las representaciones de almacenamiento o en los métodos de acceso.} \cite{Codd1985}
 
     Esta regla hace referencia a que los SMBD deben garantizar la independencia física, es decir que cualquier modificación en la forma de almacenamiento y el acceso a los datos, no debe afectar a las aplicaciones.
     
-    \item \textit{Los programas de aplicación y las actividades de los terminales no se ven afectados lógicamente cuando se realizan cambios en las tablas base.}[1]
+    \item \textit{Los programas de aplicación y las actividades de los terminales no se ven afectados lógicamente cuando se realizan cambios en las tablas base.}\cite{Codd1985}
     
     Implica que el SMBD debe garantizar la independencia lógica, es decir que al realizar modificaciones sobre las tablas para reestructurarlas, no se debe afectar a las aplicaciones o programas que usen la base de datos para funcionar.
     
-    \item \textit{Las restricciones de integridad específicas de una base de datos relacional concreta deben poder definirse en el sublenguaje de datos relacionales y almacenarse en el catálogo, no en los programas de aplicación}   [1]
+    \item \textit{Las restricciones de integridad específicas de una base de datos relacional concreta deben poder definirse en el sublenguaje de datos relacionales y almacenarse en el catálogo, no en los programas de aplicación}   \cite{Codd1985}
     
     Implica que cualquier regla de integridad, como la integridad referencial o la integridad de entidad, debe almacenarse directamente en la base de datos como un dato más. Esta regla funciona para tratar a la base de datos y sus restricciones como una sola cosa, evitando que las aplicaciones externas sean las que almacenen las restricciones.
     
-    \item \textit{Un SGBD relacional tiene independencia de distribución.}[1]
+    \item \textit{Un SGBD relacional tiene independencia de distribución.}\cite{Codd1985}
     
     Implica que los datos pueden distribuirse en múltiples servidores o computadoras sin afectar el funcionamiento de las aplicaciones.
     
     \item \textit{Si un sistema relacional dispone de un lenguaje de bajo nivel (un solo registro a la vez), dicho lenguaje de bajo nivel no puede utilizarse para subvertir o eludir las reglas y
-restricciones de integridad expresadas en el lenguaje relacional de nivel superior (varios registros a la vez).}[1]
+restricciones de integridad expresadas en el lenguaje relacional de nivel superior (varios registros a la vez).}\cite{Codd1985}
 
     Esta regla garantiza que las restricciones de integridad y de seguridad no sean vulnerables en caso de que el sistema use un lenguaje de bajo nivel con acceso a los registros en los que se almacenan los datos.
     
