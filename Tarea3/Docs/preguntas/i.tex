@@ -1,0 +1,24 @@
+\section{Preguntas de repaso}
+\subsection*{i. }
+\addcontentsline{toc}{subsection}{i.}
+
+\textbf{¿Qué es una relación y qué características tiene?}
+
+Una relación $R$ sobre los conjuntos de entidades $A_1, A_2, A_3, \dots, A_n$ es un subconjunto del producto cartesiano de los mismos: $R \subseteq A_1 \times A_2 \times A_3 \times \dots \times A_n$. En las bases de datos relacionales se representa mediante una estructura de tabla compuesta por un nombre único, un conjunto fijo de atributos (columnas) y un conjunto de tuplas (filas).
+
+Las características de una relación en el Modelo Relacional se dividen en las siguientes:
+
+\begin{itemize}
+    \item \textbf{Dominio:} Conjunto finito de valores homogéneos y atómicos caracterizados por un nombre específico.
+    \item \textbf{Atributos:} Elemento que participa en la descripción de las entidades y constituye una pieza específica de información para un determinado dominio. Cada atributo (columna) debe poseer un nombre único en la relación, y absolutamente todos los atributos deben contener valores atómicos.
+    \item \textbf{Llaves:} Conjunto no vacío de atributos que identifican de manera unívoca y mínima cada tupla. Estas se subdividen rigurosamente en:
+    \begin{itemize}
+        \item \textit{Llave primaria:} Permite identificar las tuplas de la relación de forma única.
+        \item \textit{Llaves candidatas:} Atributos que poseen la capacidad de identificar de manera única a una tupla, pero que no fueron seleccionados como llave primaria.
+        \item \textit{Llave foránea:} Conjunto no vacío de atributos cuyos valores obligatoriamente deben de coincidir con los valores de la llave primaria en otra relación.
+    \end{itemize}
+    \item \textbf{Restricciones:} Consisten en estructuras no permitidas dentro del modelo, dividiéndose en dos clasificaciones principales: inherentes y del usuario.
+    \item \textbf{Propiedades de las Relaciones:} Toda relación debe contar con un nombre único. En la intersección exacta de una columna y una fila siempre se encontrará un único valor, por lo que no se permiten bajo ninguna circunstancia los atributos multivaluados.
+    \item \textbf{Unicidad y Disposición de Tuplas:} No se admite la existencia de tuplas duplicadas, garantizando que cada renglón sea irrepetible. Además, es completamente irrelevante el orden en el que se presenten las tuplas.
+    \item \textbf{Disposición de Atributos:} Los atributos se encuentran desordenados; el orden lógico o físico de las columnas no altera la estructura. Por ejemplo, la relación \texttt{alumno(nombre, num\_cta, edad)} es equivalente a \texttt{alumno(num\_cta, nombre, edad)}.
+\end{itemize}

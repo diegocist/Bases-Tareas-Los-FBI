@@ -1,0 +1,167 @@
+\section*{3. Modelo relacional e inserción de tuplas.}
+
+\addcontentsline{toc}{section}{3. Modelo relacional e inserción de tuplas.}
+
+Considera el siguiente \textbf{Modelo E/R}:
+
+\begin{figure}[h!]
+    \centering
+    
+     \includegraphics[width=0.7\textwidth]{imagenes/3.png}
+
+    
+\end{figure}
+
+\addcontentsline{toc}{subsection}{a.}
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+    \item Completa la tabla que se presenta a continuación, convirtiendo el Modelo E-R en un Modelo Relacional, para todas las opciones de cardinalidad (considera en todos los casos, participación parcial). Indica las relaciones resultantes, su llave primaria y la integridad referencial. Traduce los atributos de izquierda a derecha y considera el formato de traducción: Tabla(llavePk1, llavePk2, \dots, atr1, atr2, \dots, llaveFk1, \dots)
+
+    \vspace{0.5cm}
+    \begin{table}[h!]
+        \centering
+        \renewcommand{\arraystretch}{2.5} 
+        \begin{tabular}{|c|p{12cm}|}
+            \hline
+            \textbf{Modelo E-R} & \textbf{Modelo Relacional} \\
+            \hline
+            $\mathbf{M : N}$ &  A(\underline{llavePKa1},
+                                  \underline{llavePKa2}, 
+                                  a3)
+                                  
+                                B(\underline{llavePKb},
+                                  b1)
+
+                                ab(\underline{llaveFKa1},
+                                   \underline{llaveFKa2},
+                                   \underline{llaveFKb},
+                                   ab1)\\
+            \hline
+            $\mathbf{1 : N}$ &  A(\underline{llavePKa1},
+                                  \underline{llavePKa2},            
+                                  a3)
+                                  
+                                B(\underline{llavePKb},
+                                  b1,
+                                  ab1,
+                                  llaveFKa1,
+                                  llaveFKa2)\\
+            \hline
+            $\mathbf{N : 1}$ &  A(\underline{llavePKa1},
+                                  \underline{llavePKa2},
+                                  a3,
+                                  ab1,
+                                  llaveFKb)
+                                  
+                                B(\underline{llavePKb},
+                                  b1)\\
+            \hline
+            $\mathbf{1 : 1}$ &  A(\underline{llavePKa1},
+                                  \underline{llavePKa2}, 
+                                  a3)
+                                  
+                                B(\underline{llavePKb},
+                                  b1)
+
+                                ab(\underline{llaveFKa1},
+                                   \underline{llaveFKa2},
+                                   \underline{llaveFKb},
+                                   ab1)\\
+            \hline
+        \end{tabular}
+    \end{table}
+    \vspace{0.5cm}
+    \newpage
+
+    \addcontentsline{toc}{subsection}{b.}
+    \item Del inciso a) toma el MR que obtuviste para la cardinalidad M : N. Asume que los atributos a1, b y ab1 son de tipo entero, mientras que a2, a3 y b1 son de tipo cadena. Supón que la relación A tiene 4 tuplas con los siguientes valores (2,'ww','a'), (4,'xx','b'), (6,'yy','c'), (8,'zz','d') y la relación B tiene 5 tuplas identificadas por los valores 17, 27, 37, 47, 57. Los incisos que se presentan a continuación representan un conjunto de tuplas a insertar (en ese orden) en la relación AB, indica cuál conjunto se puede insertar completamente en dicha relación. Justifica tu respuesta en cada caso. En caso de no ser posible, indica un conjunto de 5 tuplas que si se puedan insertar.
+
+\begin{enumerate}[label=\roman*.]
+    \item (8,'zz', 17, 5); (6,'yy', 57, 10); (4,'xx', 27, 15); (2,'ww', 37, 20); (4,'xx', 27, 15)
+    
+    En este caso, notemos que la tupla 3 y 5 son iguales, de modo que al tratar de insertar la última tupla, los valores de las llaves se repetirán y se marcará un error por duplicado de llaves. Para solucionarlo, basta con modificar el valor de 27 en la última tupla por cualquier otro disponible, como 17. De este modo, una tupla válida sería la siguiente:
+    \begin{itemize}
+        \item (8,'zz', 17, 5); (6,'yy', 57, 10); (4,'xx', 27, 15); (2,'ww', 37, 20); (4,'xx', 17, 15)
+    \end{itemize}
+    
+    \item (17,'zz', 2,'m'); (27,'yy', 4,'n'); (37,'xx', 6,'o'); (47,'ww', 8,'p'); (57,'zz', 4,'q')
+    
+      Por una parte, notemos que los atributos de las inserciones están desordenados. Al traducir la relación al modelo relacional usando la indicación de agrupar los atributos de izquierda a derecha, el orden debería ser: ab(\underline{llaveFKa1}, \underline{llaveFKa2}, \underline{llaveFKb}, ab1), sin embargo, parece tener el orden: ab(llaveFKb, llaveFKa2, llaveFKa1, ab1). De este modo, un primer error está en cuestión de integridad referencial, pues no podemos encontrar las llaves 17, 27, 37, 47 y 57 en la tabla de A, y de la misma forma, no podemos encontrar los números 2, 4, 6 y 8 en la tabla de B. Por otro lado, siguiendo el orden en el que se escriben los atributos, el último elemento es el atributo ab1, que se menciona que es un entero, mientras que en las inserciones es una cadena, por lo que existe un error sobre el tipo de dato usado. Una tupla válida sería:
+    \begin{itemize}       
+        \item (2,'ww', 17, 1); (4,'xx', 27, 3); (6,'yy', 37, 5); (8,'zz', 47, 7); (4,'xx', 57, 9)   
+    \end{itemize}
+
+    
+    \item (2,'a', 17, 23); (4,'b', 27, 24); (6,'c', 37, 25); (8,'d', 47, 26); (2,'a', 57, 27)
+    
+    Siguiendo el orden en que se escriben los atributos en la tabla anterior, notemos que los primeros dos elementos deben coincidir con llaves primarias existentes en la tabla correspondiente a la entidad A; particularmente, el segundo elemento debería ser el par correspondiente al primer elemento de la tupla, sin embargo, este segundo elemento no está en el conjunto de posibles valores que puede tomar a2. De este modo, al tratar de insertar la tupla tendremos un error de integridad referencial. Una tupla correcta sería:
+    \begin{itemize}
+        \item (2,'ww', 17, 23); (4,'xx', 27, 24); (6,'yy', 37, 25); (8,'zz', 47, 26); (2,'ww', 57, 27)
+    \end{itemize}
+    
+    \item (2,'ww', 57, 2); (4,'xx', 37, 4); (6,'yy', 17, 6); (8,'zz', 37, 8); (4,'xx', 47, 10)
+
+    Esta tupla es totalmente correcta. Notemos que, siguiendo el orden de los atributos en la tabla anterior, los primeros dos elementos corresponden a un par válido en la tabla de A, el siguiente elemento también es un valor válido en la tabla de B, y el último elemento es un número, cumpliendo con el tipo de dato correspondiente al atributo ab1. Además, ninguna tupla se repite.
+\end{enumerate}
+
+    \addcontentsline{toc}{subsection}{c.}
+    \item Del inciso a) toma como base el MR que obtuviste para la cardinalidad 1:N. Los incisos que se presentan a continuación representan un conjunto de tuplas a insertar (en ese orden) en la relación B, indica cuál conjunto se puede insertar completamente en dicha relación. Justifica tu respuesta en cada caso. En caso de no ser posible, indica un conjunto de 5 tuplas que sí se puedan insertar.
+
+    Tomemos, al igual que en los demás incisos, el contexto proporcionado en el inciso b) para las llaves de A y B.
+    \begin{enumerate}[label=\roman*.]
+     \item (2,'f',57,'zz',10); (4,'g',47,'yy',15); (6,'h',37,'xx',10); (8,'i',27,'ww',15); (2,'j',17,'yy',20)
+    
+     Notemos que estas 5 tuplas no serán aceptadas pues el orden de la tupla es incorrecto. El orden correcto (solo agregando el tipo de dato para cada elemento) es el siguiente: (int, varchar, int, int, varchar) como se vio en la fila del 1:N de la tabla del inciso a), mientras que en las 5 tuplas tenemos un varchar en la posición 4 (de izquierda a derecha) en lugar de un int.
+
+     Por lo que propongo el siguiente conjunto de 5 tuplas que lo satisface, corrigiendo los errores de orden y preservando la integridad referencial:
+     
+     (57,'f',10,8,'zz'); (47,'g',15,6,'yy'); (37,'h',10,4,'xx'); (27,'i',15,2,'ww'); (17,'j',20,6,'yy')
+
+    \vspace{.5cm}
+    \item (57,8,'zz','f',2); (47,6,'yy','g',4); (37,4,'xx','h',6); (27,2,'ww','i',8); (17,6,'yy','j',6)
+    
+    Similarmente al inciso pasado, el orden de la tupla es INCORRECTO, por lo que estas 5 tuplas tampoco serán aceptadas; particularmente la posición dos de la tupla tiene un int en vez de tener una cadena. Podemos ordenar los elementos de las tuplas con el formato correcto proporcionado en la tabla del inciso a), donde se nota que así se preservaría el orden, la integridad referencial y la propiedad de relación 1:N (por lo que se permite que el par 6,'yy' se utilice para dos valores de la llave de B):
+
+    (57,'f',2,8,'zz'); (47,'g',4,6,'yy'); (37,'h',6,4,'xx'); (27,'i',8,2,'ww'); (17,'j',6,6,'yy')
+
+    \vspace{.5cm}
+    \item (17,'f',8,'zz',1); (27,'g',6,'yy',2); (37,'h',4,'xx',3); (27,'i',2,'ww',4); (17,'j',6,'yy',5)
+
+    Este conjunto sigue el orden del conjunto I, es decir, un orden incorrecto donde las llaves foráneas de A están en medio en lugar de en el extremo derecho. Ordenando correctamente notamos que las tuplas respetan la integridad referencial y además la relación 1:N (por ello es válido que las llaves 6,'yy' de A se repitan para dos valores de B); la única corrección adicional necesaria es elegir valores únicos para la llave primaria de B (ya que 17 y 27 se repetían), por lo que queda como:
+
+    (17,'f',1,8,'zz'); (27,'g',2,6,'yy'); (37,'h',3,4,'xx'); (47,'i',4,2,'ww'); (57,'j',5,6,'yy')
+
+    \vspace{.5cm}
+    \item  (37,'f',8,2,'ww'); (47,'g',6,4,'xx'); (27,'h',4,6,'yy'); (17,'i',2,8,'zz'); (57,'j',6,4,'xx')
+
+    Finalmente, se puede notar que en efecto este conjunto de tuplas es aceptado, respeta la integridad referencial usando las llaves de A y la llave de B definidas previamente y, además, en el orden correcto. Finalmente, las dos posiciones restantes cumplen efectivamente con los tipos en sus posiciones correctas, por lo que este conjunto es insertado exitosamente.
+     \end{enumerate}
+
+     \addcontentsline{toc}{subsection}{d.}
+    \item Considera el mismo escenario del inciso b) para las relaciones A y B. Toma como base el Modelo Relacional que obtuviste para la cardinalidad 1:1. Supón que tu modelo tiene participación parcial de ambos lados. Propón un conjunto de 5 tuplas que se pueda insertar en la relación ab y un conjunto que no se pueda insertar (también de 5 tuplas). Justifica tu respuesta en cada caso.
+    \begin{enumerate}[label=\roman*.]
+        \item Primero veamos qué tuplas se podrían aceptar y por qué. Cabe destacar que, dado que la entidad A solo cuenta con 4 tuplas en el inciso b), \textbf{es imposible proponer 5 tuplas válidas} sin antes agregar nuevos registros a la tabla A, esto por la restricción de cardinalidad 1:1, por lo que cada par de llaves de A solo se puede realcionar con una de B. Por ello, proponemos las unicas 4 posibles:
+
+         (2,'ww',17,5); (4,'xx',27,10); (6,'yy',37,15); (8,'zz',47,20)
+
+         Así que notemos que satisfacen todas las condiciones para que sean insertadas, las dividiré en 3:
+         \begin{enumerate}
+             \item Preservan la integridad referencial: Esto es, los dos primeros términos de la tupla corresponden a las llaves foráneas de la entidad A, y las siguientes posiciones a la llave foránea de la entidad B, donde efectivamente las 4 tuplas satisfacen que corresponden a las llaves ya existentes predefinidas en el inciso b).
+             \item Correcto el tipo de dato: Todos los elementos de las 4 tuplas satisfacen seguir los tipos de datos definidos en el inciso b): (int, cadena, int, int) por lo que cumplen este punto.
+             \item Restricción 1:1: Al ser una relación uno a uno, las llaves de A se pueden relacionar solo con una llave de B y viceversa. Las 4 tuplas respetan esto, ya que ninguna llave de A ni de B se repite. Por esta misma regla es imposible insertar una quinta tupla usando las llaves existentes.
+         \end{enumerate}
+
+         \item Ahora veamos 5 que NO son aceptadas y por qué:
+
+        (2,'ww',17,5); (4,'xx',27,'zz'); (5,'yy',37,15); (1,'ww','zz',25.5); (2,'ww',57,25)
+
+        Notemos que cada tupla incumple al menos uno de los requerimientos del punto pasado:
+        \begin{enumerate}
+            \item (2,'ww',17,5): Aunque las llaves existen en las entidades originales, esta tupla viola la restricción de cardinalidad uno a uno, pues la llave de A (2,'ww') ya fue relacionada previamente con otra llave de B, y no se puede relacionar con más de una.
+            \item (4,'xx',27,'zz'): Aunque la integridad referencial se satisface en parte y no está repetida, el último elemento NO corresponde con el tipo de dato correcto (debería ser int).
+            \item (5,'yy',37,15): La integridad referencial es violada por el primer elemento pues la entidad A NO tiene la llave compuesta 5, 'yy'. Por lo que no acepta la tupla.
+            \item (1,'ww','zz',25.5): Esta tupla no respeta la integridad referencial ni los tipos de datos en la llave de B, por lo que no sería aceptada.
+            \item (2,'ww',57,25): Misma razón que en el punto 1).
+        \end{enumerate}
+     \end{enumerate}
+\end{enumerate} 
