@@ -1,0 +1,58 @@
+\section*{1. Cardinalidad de la consulta}
+\addcontentsline{toc}{section}{1. Cardinalidad de la consulta}
+
+Considera las siguientes relaciones:
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{minipage}{0.35\textwidth}
+  \centering
+  $R =$ \quad
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{A} & \textbf{B} \\ \hline
+    1 & x \\
+    2 & y \\
+    2 & z \\
+    3 & x \\
+    9 & a \\ \hline
+  \end{tabular}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+  \centering
+  $S =$ \quad
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{B} & \textbf{C} & \textbf{D} \\ \hline
+    x & 0 & 3 \\
+    y & 2 & 1 \\
+    y & 3 & 3 \\
+    w & 3 & 0 \\
+    y & 4 & 2 \\ \hline
+  \end{tabular}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm}
+
+Para las siguientes expresiones de \textbf{álgebra relacional}, completa la tabla con el número de tuplas que cada una de ellas produce utilizando las relaciones \textbf{R} y \textbf{S}. Deberás indicar las \textbf{tablas resultantes} en cada caso.
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{|l|p{5cm}|}
+  \hline
+  \textbf{Expresión} & \textbf{Cardinalidad del resultado} \\ \hline
+  $R \times S$ & \\ \hline
+  $R \bowtie_{D > A} S$ & \\ \hline
+  $R \rtimes S$ & \\ \hline
+  $R \ltimes S$ & \\ \hline
+  $R \bowtie_{A = D} S$ & \\ \hline
+  $\rho_{C \leftarrow A}(R) \bowtie S$ & \\ \hline
+  $\pi_B(R) - \pi_B(\sigma_{C \ge 3}(S))$ & \\ \hline
+  $\pi_A(R) \cap \rho_{A \leftarrow D}(\pi_D(S))$ & \\ \hline
+  $\pi_D(S) \bowtie R$ & \\ \hline
+  $\gamma_{A; \text{count}(B) \rightarrow t}(R \bowtie S)$ & \\ \hline
+\end{tabular}
+\end{center}
