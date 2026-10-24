@@ -1,0 +1,34 @@
+\subsection*{Justificacion Fila 10}
+
+Primero se obtiene la tabla sobre la que vamos a aplicar la agrupación. Para esto calculamos el join externo de ambas tablas, en donde conservamos todos los elementos de cada tabla y rellenamos con valores nulos.
+
+\begin{center}
+$(R =\Join= S) = T =$ \quad
+\begin{tabular}{|c|c|c|c|}
+  \hline
+  \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\ \hline
+  1 & x & 0 & 3 \\
+  2 & y & 2 & 1 \\
+  2 & y & 3 & 3 \\
+  2 & y & 4 & 2 \\
+  2 & z & \text{NULL} & \text{NULL} \\
+  3 & x & 0 & 3 \\
+  9 & a & \text{NULL} & \text{NULL} \\
+  \text{NULL} & w & 3 & 0 \\ \hline
+\end{tabular}
+\end{center}
+
+Posteriormente, aplicamos la agrupación respecto a la columna A, contando cuántas filas con valores no nulos respecto a B tiene cada valor de A. De este modo obtenemos una nueva tabla con las columnas de los valores de A y el número de veces que se repite (t).
+
+\begin{center}
+$\gamma_{A; \text{count}(B) \rightarrow t}T=$ \quad
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{A} & \textbf{t} \\ \hline
+  1 & 1 \\
+  2 & 4 \\
+  3 & 1 \\
+  9 & 1 \\
+  \text{NULL} & 1 \\ \hline
+\end{tabular}
+\end{center}

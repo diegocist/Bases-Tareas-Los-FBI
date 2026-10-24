@@ -1,0 +1,27 @@
+\subsection*{Justificacion Fila 6:}
+
+Primero se renombra la fila A de la tabla R, por el nombre C.
+
+\begin{center}
+$\rho_{C \leftarrow A}(R) = R'=$ \quad
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{C} & \textbf{B} \\ \hline
+  1 & x \\
+  2 & y \\
+  2 & z \\
+  3 & x \\
+  9 & a \\ \hline
+\end{tabular}
+\end{center}
+
+Posteriormente se aplica Join Natural sobre la tabla anterior y la tabla S. Dado que las tablas comparten las columnas C y B, entonces con el join natural buscamos las tuplas en donde los valores de estas columnas coinciden. Notemos que solo coinciden para $C = 2$ y $B = y$). Así, tenemos la siguiente tabla.
+\begin{center}
+$R' \bowtie S =$ \quad
+\begin{tabular}{|c|c|c|}
+  \hline
+ 
+  \textbf{C} & \textbf{B} & \textbf{D} \\ \hline
+  2 & y & 1 \\ \hline
+\end{tabular}
+\end{center}
