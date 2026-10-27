@@ -1,0 +1,58 @@
+\subsection*{Justificacion Fila 8:}
+
+Primero se proyecta la columna $A$ de $R$. Eliminamos los renglones duplicados, en este caso eliminamos un $2$ ya que aparece dos veces.
+
+\begin{center}
+$\pi_{A}(R) =$ \quad
+\begin{tabular}{|c|}
+\hline
+\textbf{A} \\ \hline
+  1 \\
+  2 \\
+  3 \\
+  9 \\ \hline
+\end{tabular}
+\end{center}
+
+Después se proyecta la columna $D$ de $S$. De igual forma, eliminamos un $3$ ya que aparece dos veces.
+
+\begin{center}
+$\pi_{D}(S) =$ \quad
+\begin{tabular}{|c|}
+\hline
+\textbf{D} \\ \hline
+  3 \\
+  1 \\
+  0 \\
+  2 \\ \hline
+\end{tabular}
+\end{center}
+
+Se renombra la columna $D$ por $A$ para poder aplicar la intersección, ya que se requiere que los atributos tengan el mismo nombre.
+
+\begin{center}
+$\rho_{A \leftarrow D}(\pi_{D}(S)) =$ \quad
+\begin{tabular}{|c|}
+\hline
+\textbf{A} \\ \hline
+  3 \\
+  1 \\
+  0 \\
+  2 \\ \hline
+\end{tabular}
+\end{center}
+
+Se aplica la intersección, que conserva únicamente los valores que aparecen en ambas tablas. Por lo que como $9$ solo está en la primera y $0$ solo en la segunda, estos valores los eliminamos.
+
+\begin{center}
+$\pi_{A}(R) \cap \rho_{A \leftarrow D}(\pi_{D}(S)) =$ \quad
+\begin{tabular}{|c|}
+\hline
+\textbf{A} \\ \hline
+  1 \\
+  2 \\
+  3 \\ \hline
+\end{tabular}
+\end{center}
+
+Por lo tanto, la cardinalidad del resultado es \textbf{3}.
