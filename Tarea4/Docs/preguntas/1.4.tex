@@ -1,0 +1,25 @@
+\subsection*{Justificación Fila 4}
+
+El join por la derecha conserva todas las tuplas de la relación de la derecha ($S$), además de las coincidencias del join natural. Las tuplas de $S$ que no tienen coincidencia con $R$ se conservan y se rellenan con nulos (NULL) en los atributos correspondientes a $R$.
+
+Las coincidencias naturales ya las calculamos en el paso anterior y sabemos que nos dan 5 tuplas. Revisamos las tuplas de $S$ que no hicieron match con $R$:
+\begin{itemize}
+    \item $(w, 3, 0)$ en $S$ (no hay valor $w$ en la columna $B$ de $R$).
+\end{itemize}
+Esta única tupla se conserva y se rellena con NULL para la columna $A$ de $R$.
+
+Por lo tanto, la cardinalidad del resultado es $5 + 1 = \mathbf{6}$ \textbf{tuplas}.
+
+\begin{center}
+$(R \bowtie= S) =$ \quad
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\ \hline
+1 & x & 0 & 3 \\
+3 & x & 0 & 3 \\
+2 & y & 1 & 2 \\
+2 & y & 3 & 3 \\
+2 & y & 4 & 2 \\
+\text{NULL} & w & 3 & 0 \\ \hline
+\end{tabular}
+\end{center}
