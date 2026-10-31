@@ -1,2 +1,42 @@
 \section*{2. Tienda de productos en línea}
 \addcontentsline{toc}{section}{2. Tienda de productos en línea}
+\subsection*{a. Obtener toda la información de los clientes que viven en New York o en Washington, que pertenezcan al segmento consumer que hayan solicitado una orden en el tercer trimestre de 2016. Mostrar la información ordenada por la cantidad solicitada.}
+\addcontentsline{toc}{subsection}{a.}
+
+Primero, se seleccionan los clientes bajo el segmento `\textit{Consumer}' que vivan en uno de los estados indicados, y las órdenes con una fecha de pedido entre el 1° de julio y el 30 de septiembre de 2016; después, se realiza un JOIN con la columna de ID de cliente de ambas tablas. Luego, los registros se ordenan de forma descendente según la cantidad de elementos del pedido, y finalmente se realiza una proyección para obtener solo las columnas del consumidor.
+
+Expresión:
+\begin{itemize}[nosep]
+\item [\ ] $\pi_{customer.*}$
+    \begin{itemize}
+    \item [\ ] $($
+        \begin{itemize}
+            \item [\ ] $\tau_{quantity\ desc}$
+            $($
+                \item [\ ] $\sigma_{segment='Consumer'\wedge (city='New York' \vee city='Washington')}$
+                $customer$
+        \end{itemize}
+            $\bowtie_{customer.customerid=orders.customerid}$
+        \begin{itemize}    
+            \item [\ ] $\sigma_{orderdate \ge date('2016-07-01') \wedge orderdate \le date('2016-09-30')}$
+                $orders$
+            \item [\ ] $)$
+        \end{itemize}
+    $)$
+    \end{itemize}
+\end{itemize}
+
+
+Resultados obtenidos:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/result2A1.png}
+\caption{Consulta y árbol generado.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/result2A2.png}
+\caption{Resultado de consulta.}
+\end{figure}

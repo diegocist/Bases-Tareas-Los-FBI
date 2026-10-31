@@ -6,10 +6,26 @@
 \usepackage{graphicx}
 \usepackage{makecell}
 \usepackage{geometry}
+\usepackage{listings}
 \usepackage{caption}
 \usepackage{float}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
+
+% Set the maximum depth to a larger number (e.g., 9)
+\setlistdepth{9}
+\renewlist{itemize}{itemize}{9}
+
+% Define bullet symbols for the newly allowed levels
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\circ$}
+\setlist[itemize,3]{label=$\star$}
+\setlist[itemize,4]{label=$\cdot$}
+\setlist[itemize,5]{label=$\bullet$}
+\setlist[itemize,6]{label=$\circ$}
+\setlist[itemize,7]{label=$\star$}
+\setlist[itemize,8]{label=$\cdot$}
+\setlist[itemize,9]{label=$\bullet$}
 
 % --------------------- Comandos para pie de página ---------------------
 \usepackage[backend=biber, bibstyle=apa, citestyle=numeric]{biblatex}
