@@ -1,0 +1,34 @@
+\subsection*{Justificación Fila 3}
+
+El join externo por la izquierda conserva todas las tuplas de la relación de la izquierda ($R$), así como las combinaciones que hicieron coincidencia en el join natural con $S$. Si una tupla de $R$ no tiene coincidencia, los atributos de $S$ en el resultado se rellenan con valores nulos (NULL).
+
+Ambas tablas comparten el atributo $B$. Primero obtenemos las coincidencias exactas (Join Natural $R \bowtie S$):
+\begin{itemize}
+    \item Para $B = x$: $(1, x)$ y $(3, x)$ en $R$ coinciden con $(x, 0, 3)$ en $S$. Se generan 2 tuplas.
+    \item Para $B = y$: $(2, y)$ en $R$ coincide con $(y, 1, 2), (y, 3, 3)$ y $(y, 4, 2)$ en $S$. Se generan 3 tuplas.
+\end{itemize}
+Total de coincidencias: 5 tuplas.
+
+A continuación, revisamos las tuplas de $R$ que no hicieron match con $S$:
+\begin{itemize}
+    \item $(2, z)$ en $R$ (no hay $z$ en la columna $B$ de $S$).
+    \item $(9, a)$ en $R$ (no hay $a$ en la columna $B$ de $S$).
+\end{itemize}
+Estas 2 tuplas se conservan en el resultado y se completan con NULL.
+
+Por lo tanto, la cardinalidad del resultado es $5 + 2 = \mathbf{7}$ \textbf{tuplas}.
+
+\begin{center}
+$(R =\bowtie S) =$ \quad
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\ \hline
+1 & x & 0 & 3 \\
+3 & x & 0 & 3 \\
+2 & y & 1 & 2 \\
+2 & y & 3 & 3 \\
+2 & y & 4 & 2 \\
+2 & z & \text{NULL} & \text{NULL} \\
+9 & a & \text{NULL} & \text{NULL} \\ \hline
+\end{tabular}
+\end{center}

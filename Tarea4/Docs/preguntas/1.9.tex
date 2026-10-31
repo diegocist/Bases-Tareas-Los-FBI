@@ -1,0 +1,36 @@
+\subsection*{Justificacion Fila 9:}
+
+\[\pi_D(S) \bowtie R\]
+
+Primero se proyecta la columna $D$ de $S$. Eliminamos los renglones duplicados, eliminamos un $3$ ya que aparece dos veces.
+
+\begin{center}
+$\pi_{D}(S) =$ \quad
+\begin{tabular}{|c|}
+\hline
+\textbf{D} \\ \hline
+  3 \\
+  1 \\
+  0 \\
+  2 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.35\textwidth}
+  \centering
+  $R =$ \quad
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{A} & \textbf{B} \\ \hline
+    1 & x \\
+    2 & y \\
+    2 & z \\
+    3 & x \\
+    9 & a \\ \hline
+  \end{tabular}
+\end{minipage}
+\end{center}
+
+$\pi_{D}(S) $ no comparte atributos con $R$, así que el join natural equivale al producto cartesiano.
+\[4 \times 5 = \text{\textbf{20}}\]
